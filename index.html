@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Fact Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Free Fact Checker</h1>
+            <p>Verify YouTube videos & text in Hindi & English</p>
+            <div class="badge">Powered by Google Gemini AI</div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('youtube')">📺 YouTube</button>
+                <button class="tab" onclick="showTab('text')">📝 Text</button>
+            </div>
+
+            <div id="youtube-tab" class="tab-content active">
+                <div class="input-section">
+                    <input type="text" id="youtubeUrl" placeholder="Paste YouTube URL..." class="url-input">
+                    
+                    <div class="language-selector">
+                        <label>
+                            <input type="radio" name="language" value="hi" checked>
+                            🇮🇳 हिंदी
+                        </label>
+                        <label>
+                            <input type="radio" name="language" value="en">
+                            🇬🇧 English
+                        </label>
+                    </div>
+
+                    <button id="checkBtn" class="check-btn">Check Facts</button>
+                </div>
+            </div>
+
+            <div id="text-tab" class="tab-content">
+                <div class="input-section">
+                    <textarea id="textInput" placeholder="Paste article..." rows="8" class="text-input"></textarea>
+                    
+                    <div class="language-selector">
+                        <label>
+                            <input type="radio" name="text-language" value="hi" checked>
+                            🇮🇳 हिंदी
+                        </label>
+                        <label>
+                            <input type="radio" name="text-language" value="en">
+                            🇬🇧 English
+                        </label>
+                    </div>
+
+                    <button id="checkTextBtn" class="check-btn">Check Facts</button>
+                </div>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p id="loadingText">Processing...</p>
+            </div>
+
+            <div id="results" class="results hidden">
+                <h2>Results</h2>
+                <div class="transcript-section">
+                    <h3>📝 Text</h3>
+                    <div id="transcript" class="transcript"></div>
+                </div>
+                <div class="claims-section">
+                    <h3>⚖️ Fact Checks</h3>
+                    <div id="claims"></div>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </main>
+
+        <footer>
+            <p>100% Free & Open Source</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
